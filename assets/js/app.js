@@ -1,10 +1,14 @@
 $(document).ready(function() {
+  // MAIN PROCESSES
   $("#search-button").on("click", function(e) {
     e.preventDefault();
     const city = $("#city").val();
     getCityWeather(city);
+    addToRecentSearches(city);
   });
 
+  //   FUNCTIONS
+  // Get City Weather Info
   function getCityWeather(city) {
     let api_key = "8045ec9f12de714284aa8926a3a735d1";
     let baseURL = `https://api.openweathermap.org/data/2.5/weather?appid=${api_key}`;
@@ -93,7 +97,7 @@ $(document).ready(function() {
       let cardHTML = "";
 
       // Loop through hourly weather update. Incrementing by 8 to get next day values
-      for (let i = 5; i < response.list.length; i += 8) {
+      for (let i = 1; i < response.list.length; i += 8) {
         // Getting icon from weather response object
         let weatherIcon = response.list[i].weather[0].icon;
 
@@ -123,5 +127,18 @@ $(document).ready(function() {
         $("#city-week-forecast").html(cardHTML);
       }
     });
+  }
+
+  // Add new search to Recent Searches list
+  function addToRecentSearches(city) {
+    // Create Element
+    const newCity = $("<li>");
+    newCity.addClass("list-group-item");
+    newCity.text(city);
+    // Append to List
+    $("#recent-searches-list").prepend(newCity);
+
+    // Save to localStorage
+    localStorage.setItem("cities", city);
   }
 });
