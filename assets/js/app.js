@@ -26,7 +26,7 @@ $(document).ready(function() {
       // Weather Icon
       $("#weather-icon").attr(
         "src",
-        `http://openweathermap.org/img/wn/${response.weather[0].icon}.png`
+        `https://openweathermap.org/img/wn/${response.weather[0].icon}.png`
       );
 
       // Temperature in Fahrenheit
@@ -83,17 +83,44 @@ $(document).ready(function() {
     let api_key = "8045ec9f12de714284aa8926a3a735d1";
     let baseURL = `https://api.openweathermap.org/data/2.5/forecast?appid=${api_key}`;
 
-    const newURL = baseURL + "&id=" + id;
+    const unit = "imperial";
+    const newURL = baseURL + "&id=" + id + "&units=" + unit;
 
     $.ajax({
       url: newURL,
       method: "GET"
     }).then(function(response) {
-      console.log(response.list);
+      let cardHTML = "";
 
-      //loop through array
+      // Loop through hourly weather update. Incrementing by 8 to get next day values
       for (let i = 5; i < response.list.length; i += 8) {
-        console.log(response.list[i]);
+        // Getting icon from weather response object
+        let weatherIcon = response.list[i].weather[0].icon;
+
+        // Convert Date String to Month/Date/Year Format
+        let dateStr = response.list[i].dt_txt;
+        let dateStrArr = dateStr.split(" ");
+        let date = dateStrArr[0];
+        let dateArr = date.split("-");
+        let newDate = dateArr[1] + "/" + dateArr[2] + "/" + dateArr[0];
+
+        cardHTML += `
+            <div class="card text-white bg-primary p-1 mr-3">
+                <div class="card-header text-center font-weight-bold">${newDate}</div>
+                <div class="card-body">
+                <p class="card-text text-center">
+                    <img id="weather-icon" src="https://openweathermap.org/img/wn/${weatherIcon}.png"/>
+                </p>
+                <p class="card-text">
+                    Temp: ${response.list[i].main.temp} F
+                </p>
+                <p class="card-text">
+                    Humidity: ${response.list[i].main.humidity}%
+                </p>
+                </div>
+          </div>`;
+
+        $("#city-week-forecast").html(cardHTML);
       }
     });
   }
