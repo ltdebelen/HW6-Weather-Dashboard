@@ -60,22 +60,30 @@ $(document).ready(function() {
       url: newURL,
       method: "GET"
     }).then(function(response) {
-      console.log("======================UV INDEX");
-      // UV
-      console.log("UV Index: " + response.value);
+      const uv = response.value;
+
+      if (uv <= 2.0) {
+        // Favorable: 2 OR LESS
+        $("#uv-index").text(uv);
+        $("#uv-index").addClass("badge badge-success");
+      } else if (uv > 2.0 && uv <= 5.0) {
+        // Medium: 2.1 TO 5
+        $("#uv-index").text(uv);
+        $("#uv-index").addClass("badge badge-warning");
+      } else if (uv > 5.0 && uv <= 10.0) {
+        // HIGH: 5.1 to 10
+        $("#uv-index").text(uv);
+        $("#uv-index").addClass("badge badge-danger");
+      }
     });
   }
 
   // Get Five Day forecast
   function getWeekForecast(id) {
-    console.log("============= WEATHER FORECAST");
-    console.log("ID: " + id + " For weather forcast");
-
     let api_key = "8045ec9f12de714284aa8926a3a735d1";
     let baseURL = `https://api.openweathermap.org/data/2.5/forecast?appid=${api_key}`;
 
     const newURL = baseURL + "&id=" + id;
-    console.log(newURL);
 
     $.ajax({
       url: newURL,
