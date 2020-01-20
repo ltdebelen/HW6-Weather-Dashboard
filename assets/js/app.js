@@ -7,9 +7,16 @@ $(document).ready(function() {
     addToRecentSearches(city);
   });
 
+  // Hide Elements OnLoad
+  $("#recent-searches").hide();
+  $("#city-info").hide();
+  $("#forecast").hide();
+
   //   FUNCTIONS
   // Get City Weather Info
   function getCityWeather(city) {
+    $("#city-info").show();
+
     let api_key = "8045ec9f12de714284aa8926a3a735d1";
     let baseURL = `https://api.openweathermap.org/data/2.5/weather?appid=${api_key}`;
 
@@ -84,6 +91,8 @@ $(document).ready(function() {
 
   // Get Five Day forecast
   function getWeekForecast(id) {
+    $("#forecast").show();
+
     let api_key = "8045ec9f12de714284aa8926a3a735d1";
     let baseURL = `https://api.openweathermap.org/data/2.5/forecast?appid=${api_key}`;
 
@@ -131,6 +140,8 @@ $(document).ready(function() {
 
   // Add new search to Recent Searches list
   function addToRecentSearches(city) {
+    $("#recent-searches").show();
+
     // Create Element
     const newCity = $("<li>");
     newCity.addClass("list-group-item");
