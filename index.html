@@ -30,8 +30,14 @@
                 class="form-control mr-sm-2"
                 type="text"
                 placeholder="Enter City..."
+                id="city"
+                required
               />
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+              <button
+                class="btn btn-secondary my-2 my-sm-0"
+                id="search-button"
+                type="submit"
+              >
                 <i class="fas fa-search"></i>
               </button>
               <div class="card mt-5" id="recent-searches">
@@ -48,15 +54,15 @@
           </aside>
           <section id="weather-info" class="col-lg-9">
             <div class="jumbotron bg-light" id="city-info">
-              <h1 class="display-5 mb-4">Atlanta(08/15/2019)</h1>
+              <h1 class="display-5 mb-4 font-weight-bold"><span id="city-name"></span> <span id="date-today"></span> <img id="weather-icon"/></h1>
               <p class="lead">
-                Temperature: 90.9 F
+                Temperature: <span id="temperature"></span id="temperature">
               </p>
               <p class="lead">
-                Humidity: 41%
+                Humidity: <span id="humidity"></span>
               </p>
               <p class="lead">
-                Wind Speed: 4.7 MPH
+                Wind Speed: <span id="wind-speed"></span>
               </p>
               <p class="lead">
                 UV Index: 9.49
@@ -143,6 +149,7 @@
       </div>
     </section>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/js/app.js"></script>
   </body>
 </html>

@@ -1,40 +1,53 @@
 $(document).ready(function() {
-  // Variables
-  let api_key = "8045ec9f12de714284aa8926a3a735d1";
-  let baseURL = `https://api.openweathermap.org/data/2.5/weather?appid=${api_key}`;
-
-  const city = "Lenexa";
-  const unit = "imperial";
-  const newURL = baseURL + "&q=" + city + "&units=" + unit;
-
-  console.log(newURL);
-
-  $.ajax({
-    url: newURL,
-    method: "GET"
-  }).then(function(response) {
-    console.log("======================");
-    // Temperature in Fahrenheit
-    console.log("Temp in Fahrenheit: " + response.main.temp + " F");
-
-    // Humidity Percentage
-    console.log("Humidity: " + response.main.humidity + "%");
-
-    // Wind Speed: MPH
-    console.log("Wind Speed: " + response.wind.speed + " MPH");
-
-    // UV
-    const lon = response.coord.lon;
-    const lat = response.coord.lat;
-    console.log("Lon: " + lon);
-    console.log("Lat: " + lat);
-
-    // getUVIndex(lon, lat);
-
-    // 5 day forecast
-    const id = response.id;
-    getWeekForecast(id);
+  $("#search-button").on("click", function(e) {
+    e.preventDefault();
+    const city = $("#city").val();
+    getCityWeather(city);
   });
+
+  function getCityWeather(city) {
+    let api_key = "8045ec9f12de714284aa8926a3a735d1";
+    let baseURL = `https://api.openweathermap.org/data/2.5/weather?appid=${api_key}`;
+
+    city = city;
+    const unit = "imperial";
+    const newURL = baseURL + "&q=" + city + "&units=" + unit;
+
+    $.ajax({
+      url: newURL,
+      method: "GET"
+    }).then(function(response) {
+      // City Name
+      $("#city-name").text(response.name);
+
+      // Today's Date
+      $("#date-today").text(`(${moment().format("l")})`);
+
+      // Weather Icon
+      $("#weather-icon").attr(
+        "src",
+        `http://openweathermap.org/img/wn/${response.weather[0].icon}.png`
+      );
+
+      // Temperature in Fahrenheit
+      $("#temperature").text(response.main.temp + " F");
+
+      // Humidity Percentage
+      $("#humidity").text(response.main.humidity + " %");
+
+      // Wind Speed: MPH
+      $("#wind-speed").text(response.wind.speed + " MPH");
+
+      // Get UV Index
+      const lon = response.coord.lon;
+      const lat = response.coord.lat;
+      getUVIndex(lon, lat);
+
+      // 5 day forecast
+      const id = response.id;
+      getWeekForecast(id);
+    });
+  }
 
   // Get UV Index
   function getUVIndex(lon, lat) {
