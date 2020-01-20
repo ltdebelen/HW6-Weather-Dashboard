@@ -3,8 +3,12 @@ $(document).ready(function() {
   $("#search-button").on("click", function(e) {
     e.preventDefault();
     const city = $("#city").val();
-    getCityWeather(city);
-    addToRecentSearches(city);
+    if (city == "") {
+      return;
+    } else {
+      getCityWeather(city);
+      addToRecentSearches(city);
+    }
   });
 
   // Add onclick listener to list items
