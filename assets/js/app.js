@@ -12,6 +12,9 @@ $(document).ready(function() {
   $("#city-info").hide();
   $("#forecast").hide();
 
+  // Load Recent Searches Item from Local Storage
+  getRecentSearches();
+
   //   FUNCTIONS
   // Get City Weather Info
   function getCityWeather(city) {
@@ -139,6 +142,8 @@ $(document).ready(function() {
   }
 
   // Add new search to Recent Searches list
+  let cities = [];
+
   function addToRecentSearches(city) {
     $("#recent-searches").show();
 
@@ -149,7 +154,32 @@ $(document).ready(function() {
     // Append to List
     $("#recent-searches-list").prepend(newCity);
 
+    let cityObj = {
+      city: city
+    };
+
+    cities.push(cityObj);
+    console.log(cities);
+
     // Save to localStorage
-    localStorage.setItem("cities", city);
+    localStorage.setItem("searches", JSON.stringify(cities));
+  }
+
+  // Get Recent Searches from localStorage
+  function getRecentSearches() {
+    $("#recent-searches").show();
+
+    const searches = JSON.parse(localStorage.getItem("searches"));
+    console.log(searches);
+    for (let i = 0; i < searches.length; i++) {
+      console.log(searches[i]);
+
+      // Create Element
+      const newCity = $("<li>");
+      newCity.addClass("list-group-item");
+      newCity.text(searches[i].city);
+      // Append to List
+      $("#recent-searches-list").prepend(newCity);
+    }
   }
 });
