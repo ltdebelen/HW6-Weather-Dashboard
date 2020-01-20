@@ -7,6 +7,12 @@ $(document).ready(function() {
     addToRecentSearches(city);
   });
 
+  // Add onclick listener to list items
+  $("#recent-searches-list").on("click", "li.list-group-item", function() {
+    const city = $(this).text();
+    getCityWeather(city);
+  });
+
   // Hide Elements OnLoad
   $("#city-info").hide();
   $("#forecast").hide();
