@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Weather Dashboard</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-5">
+      <div class="container">
+        <a href="#" class="navbar-brand m-auto"
+          ><i class="fas fa-cloud-sun"></i> Weather Dashboard</a
+        >
+      </div>
+    </nav>
+    <section id="showcase">
+      <div class="container">
+        <div class="row">
+          <aside class="col-lg-3 bg-light">
+            <h2>Search for a City:</h2>
+            <form class="form-inline my-2 my-lg-0">
+              <input
+                class="form-control mr-sm-2"
+                type="text"
+                placeholder="Enter City..."
+              />
+              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+              <div class="card mt-5" id="recent-searches">
+                <div class="card-header">
+                  Recent Searches
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Austin</li>
+                  <li class="list-group-item">Chicago</li>
+                  <li class="list-group-item">New York</li>
+                </ul>
+              </div>
+            </form>
+          </aside>
+          <section id="weather-info" class="col-lg-9">
+            <div class="jumbotron bg-light" id="city-info">
+              <h1 class="display-5 mb-4">Atlanta(08/15/2019)</h1>
+              <p class="lead">
+                Temperature: 90.9 F
+              </p>
+              <p class="lead">
+                Humidity: 41%
+              </p>
+              <p class="lead">
+                Wind Speed: 4.7 MPH
+              </p>
+              <p class="lead">
+                UV Index: 9.49
+              </p>
+            </div>
+            <div id="city-week-forecast">
+              <div class="container">
+                <div class="row">
+                  <div class="card text-white bg-primary mb-3 mr-2 col">
+                    <div class="card-header">8/16/2019</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <i class="fas fa-cloud-sun"></i>
+                      </p>
+                      <p class="card-text">
+                        Temp: 86.84
+                      </p>
+                      <p class="card-text">
+                        Humidity: 43%
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3 mr-2 col">
+                    <div class="card-header">8/16/2019</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <i class="fas fa-cloud-sun"></i>
+                      </p>
+                      <p class="card-text">
+                        Temp: 86.84
+                      </p>
+                      <p class="card-text">
+                        Humidity: 43%
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3 mr-2 col">
+                    <div class="card-header">8/16/2019</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <i class="fas fa-cloud-sun"></i>
+                      </p>
+                      <p class="card-text">
+                        Temp: 86.84
+                      </p>
+                      <p class="card-text">
+                        Humidity: 43%
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3 mr-2 col">
+                    <div class="card-header">8/16/2019</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <i class="fas fa-cloud-sun"></i>
+                      </p>
+                      <p class="card-text">
+                        Temp: 86.84
+                      </p>
+                      <p class="card-text">
+                        Humidity: 43%
+                      </p>
+                    </div>
+                  </div>
+                  <div class="card text-white bg-primary mb-3 col">
+                    <div class="card-header">8/16/2019</div>
+                    <div class="card-body">
+                      <p class="card-text">
+                        <i class="fas fa-cloud-sun"></i>
+                      </p>
+                      <p class="card-text">
+                        Temp: 86.84
+                      </p>
+                      <p class="card-text">
+                        Humidity: 43%
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
