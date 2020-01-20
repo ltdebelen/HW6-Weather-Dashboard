@@ -8,7 +8,6 @@ $(document).ready(function() {
   });
 
   // Hide Elements OnLoad
-  $("#recent-searches").hide();
   $("#city-info").hide();
   $("#forecast").hide();
 
@@ -159,7 +158,6 @@ $(document).ready(function() {
     };
 
     cities.push(cityObj);
-    console.log(cities);
 
     // Save to localStorage
     localStorage.setItem("searches", JSON.stringify(cities));
@@ -167,19 +165,19 @@ $(document).ready(function() {
 
   // Get Recent Searches from localStorage
   function getRecentSearches() {
-    $("#recent-searches").show();
-
     const searches = JSON.parse(localStorage.getItem("searches"));
-    console.log(searches);
-    for (let i = 0; i < searches.length; i++) {
-      console.log(searches[i]);
-
-      // Create Element
-      const newCity = $("<li>");
-      newCity.addClass("list-group-item");
-      newCity.text(searches[i].city);
-      // Append to List
-      $("#recent-searches-list").prepend(newCity);
+    if (searches != null) {
+      for (let i = 0; i < searches.length; i++) {
+        // Create Element
+        const newCity = $("<li>");
+        newCity.addClass("list-group-item");
+        newCity.text(searches[i].city);
+        // Append to List
+        $("#recent-searches-list").prepend(newCity);
+      }
+      $("#recent-searches").show();
+    } else {
+      $("#recent-searches").hide();
     }
   }
 });
